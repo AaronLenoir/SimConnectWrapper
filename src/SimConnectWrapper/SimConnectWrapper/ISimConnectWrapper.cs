@@ -35,6 +35,11 @@ namespace SimConnectWrapper
         Dictionary<SimConnectProperty, SimConnectPropertyValue> LatestData { get; }
 
         /// <summary>
+        /// SimConnect properties that have been subscribed to
+        /// </summary>
+        IEnumerable<SimConnectProperty> Subscriptions { get; }
+
+        /// <summary>
         /// A direct reference to he Microsoft.FlightSimulator.SimConnect.SimConnect object
         /// </summary>
         SimConnect Sim { get; }
