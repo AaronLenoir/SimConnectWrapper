@@ -45,6 +45,16 @@ namespace SimConnectWrapper
         SimConnect Sim { get; }
 
         /// <summary>
+        /// Starts listening to SimConnect, as soon as possible
+        /// </summary>
+        void Connect();
+
+        /// <summary>
+        /// Must be called to retrieve messages from SimConnect
+        /// </summary>
+        void ReceiveMessage();
+
+        /// <summary>
         /// Subscribe to a SimConnect property
         /// </summary>
         /// <param name="property">The property to subscribe to</param>

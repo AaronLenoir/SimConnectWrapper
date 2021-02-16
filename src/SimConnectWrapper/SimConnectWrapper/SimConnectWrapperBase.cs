@@ -26,6 +26,11 @@ namespace SimConnectWrapper
             LatestData = new Dictionary<SimConnectProperty, SimConnectPropertyValue>();
         }
 
+        public void Connect()
+        {
+            StartTimer();
+        }
+
         /// <summary>
         /// When implemented in a derived class, creates the instance of SimConnect
         /// appropriatly for that implementation
@@ -145,6 +150,18 @@ namespace SimConnectWrapper
         public SimConnect Sim { get; private set; }
 
         public event EventHandler<Exception> OnError;
+
+        public void ReceiveMessage()
+        {
+            try
+            {
+                Sim.ReceiveMessage();
+            }
+            catch (Exception ex)
+            {
+                OnError?.Invoke(this, ex);
+            }
+        }
 
         public void Subscribe(SimConnectProperty property)
         {
