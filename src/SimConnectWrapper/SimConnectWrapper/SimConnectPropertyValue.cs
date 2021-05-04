@@ -7,6 +7,14 @@
             Empty = true;
         }
 
+        public static SimConnectPropertyValue EmptyValue
+        {
+            get
+            {
+                return new SimConnectPropertyValue();
+            }
+        }
+
         public SimConnectPropertyValue(object value)
         {
             RawValue = value;

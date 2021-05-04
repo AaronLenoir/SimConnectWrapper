@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.FlightSimulator.SimConnect;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SimConnectWrapper.Forms
 {
-    public partial class SimConnectWrapper : Control
+    public partial class SimConnectWrapper : Control, ISimConnectWrapper
     {
         private SimConnectWrapperWindows _simConnectWrapper;
 
@@ -25,9 +26,68 @@ namespace SimConnectWrapper.Forms
             _simConnectWrapper.Connect();
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
+        [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
+        protected override void WndProc(ref Message m)
         {
-            base.OnPaint(pe);
+            //if (_simConnectWrapper != null)
+            //{
+            //    _simConnectWrapper.HandleWndProc(m.Msg);
+            //}
+            if (_simConnectWrapper != null && 
+                m.Msg == _simConnectWrapper.WM_USER_SIMCONNECT)
+            {
+                try
+                {
+                    _simConnectWrapper.ReceiveMessage();
+                }
+                catch (Exception ex)
+                {
+                    // TODO: Handle error
+                    //OnError?.Invoke(this, ex);
+                }
+            }
+
+            base.WndProc(ref m);
+        }
+
+        public bool HasError => ((ISimConnectWrapper)_simConnectWrapper).HasError;
+
+        public Exception LatestError => ((ISimConnectWrapper)_simConnectWrapper).LatestError;
+
+        public DateTime LastDataReceivedOn => ((ISimConnectWrapper)_simConnectWrapper).LastDataReceivedOn;
+
+        public Dictionary<SimConnectProperty, SimConnectPropertyValue> LatestData => ((ISimConnectWrapper)_simConnectWrapper).LatestData;
+
+        public IEnumerable<SimConnectProperty> Subscriptions => ((ISimConnectWrapper)_simConnectWrapper).Subscriptions;
+
+        public SimConnect Sim => ((ISimConnectWrapper)_simConnectWrapper).Sim;
+
+        public event EventHandler<Exception> OnError
+        {
+            add
+            {
+                ((ISimConnectWrapper)_simConnectWrapper).OnError += value;
+            }
+
+            remove
+            {
+                ((ISimConnectWrapper)_simConnectWrapper).OnError -= value;
+            }
+        }
+
+        public void ReceiveMessage()
+        {
+            ((ISimConnectWrapper)_simConnectWrapper).ReceiveMessage();
+        }
+
+        public void Subscribe(SimConnectProperty property)
+        {
+            ((ISimConnectWrapper)_simConnectWrapper).Subscribe(property);
+        }
+
+        public void Subscribe(IEnumerable<SimConnectProperty> properties)
+        {
+            ((ISimConnectWrapper)_simConnectWrapper).Subscribe(properties);
         }
     }
 }

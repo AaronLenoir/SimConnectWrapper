@@ -88,6 +88,10 @@
       <Project>{7ae526ee-e99d-4cb7-97a7-75093a8f6504}</Project>
       <Name>SimConnectWrapper.Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimConnectWrapper\SimConnectWrapper.csproj">
+      <Project>{E7788FFF-D56E-4481-B7FB-374CAF175329}</Project>
+      <Name>SimConnectWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="SimConnect.dll">

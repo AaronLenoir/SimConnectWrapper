@@ -11,7 +11,7 @@ namespace SimConnectWrapper.Forms
     public class SimConnectWrapperWindows : SimConnectWrapperBase
     {
         // ID used to identify the SimConnect message in the Windows Message Loop
-        private const int WM_USER_SIMCONNECT = 0x0402;
+        public uint WM_USER_SIMCONNECT { get { return 0x0402; } }
 
         private string Title;
 

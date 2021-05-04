@@ -168,6 +168,7 @@ namespace SimConnectWrapper
             if (!_subscriptions.Contains(property))
             {
                 _subscriptions.Add(property);
+                LatestData.Add(property, SimConnectPropertyValue.EmptyValue);
             }
         }
 
