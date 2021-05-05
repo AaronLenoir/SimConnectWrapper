@@ -42,10 +42,6 @@ namespace SimConnectWrapper
             {
                 SetValue(((String64)data.dwData[0]).Value);
             }
-            else if (dataType == SIMCONNECT_DATATYPE.INT32)
-            {
-                SetValue(((Int32)data.dwData[0]));
-            }
             else
             {
                 SetValue(data.dwData[0]);

@@ -115,7 +115,22 @@ namespace SimConnectWrapper
                 {
                     Sim.RegisterDataDefineStruct<String64>(property.Key);
                 }
-                else
+                else if (property.SimConnectDataType == SIMCONNECT_DATATYPE.FLOAT32)
+                {
+                    Sim.RegisterDataDefineStruct<double>(property.Key);
+                }
+                else if (property.SimConnectDataType == SIMCONNECT_DATATYPE.FLOAT64)
+                {
+                    Sim.RegisterDataDefineStruct<double>(property.Key);
+                }
+                else if (property.SimConnectDataType == SIMCONNECT_DATATYPE.INT32)
+                {
+                    Sim.RegisterDataDefineStruct<Int32>(property.Key);
+                }
+                else if (property.SimConnectDataType == SIMCONNECT_DATATYPE.INT64)
+                {
+                    Sim.RegisterDataDefineStruct<Int64>(property.Key);
+                } else
                 {
                     Sim.RegisterDataDefineStruct<double>(property.Key);
                 }

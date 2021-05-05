@@ -10,7 +10,6 @@ namespace SimConnectWrapper
         // Aircraft engine data
         public static SimConnectProperty NumberOfEngines = new SimConnectProperty(
             SimConnectPropertyKey.NumberOfEngines, "NUMBER OF ENGINES", "number", SIMCONNECT_DATATYPE.FLOAT64);
-        // TODO: Correctly parse the masked value
         public static SimConnectProperty EngineControlSelect = new SimConnectProperty(
             SimConnectPropertyKey.EngineControlSelect, "ENGINE CONTROL SELECT", "mask", SIMCONNECT_DATATYPE.INT32);
 

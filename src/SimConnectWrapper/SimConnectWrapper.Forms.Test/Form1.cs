@@ -60,10 +60,10 @@ namespace SimConnectWrapper.Forms.Test
 
                     if (!value.Empty)
                     {
-                        allData.AppendLine($"{property.Name}:\t\t{value.RawValue}");
+                        allData.AppendLine($"{property.Name} ({value.RawValue.GetType().Name}): {value.RawValue}");
                     } else
                     {
-                        allData.AppendLine($"{property.Name}:\t\tno data received yet");
+                        allData.AppendLine($"{property.Name} (unknown): no data received yet");
                     }
                 }
 
