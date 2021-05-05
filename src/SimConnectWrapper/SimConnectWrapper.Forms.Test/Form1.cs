@@ -31,6 +31,10 @@ namespace SimConnectWrapper.Forms.Test
 
             simConnectWrapper.Subscribe(SimConnectProperties.NumberOfEngines);
             simConnectWrapper.Subscribe(SimConnectProperties.EngineControlSelect);
+            simConnectWrapper.Subscribe(SimConnectProperties.EngineType);
+            simConnectWrapper.Subscribe(SimConnectProperties.ThrottleLowerLimit);
+            simConnectWrapper.Subscribe(SimConnectProperties.MasterIgnitionSwitch);
+            simConnectWrapper.Subscribe(SimConnectProperties.GeneralEngineCombustion(1));
             simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
             simConnectWrapper.Subscribe(SimConnectProperties.AtcType);
             simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
