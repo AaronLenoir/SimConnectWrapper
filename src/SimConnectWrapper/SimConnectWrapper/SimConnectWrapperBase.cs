@@ -57,6 +57,10 @@ namespace SimConnectWrapper
             return timer;
         }
 
+        /// <summary>
+        /// Executed periodically, this function will Request the data needed to SimConnect. If no connection
+        /// is available, a connection will be opened.
+        /// </summary>
         private void GetData(object sender, EventArgs e)
         {
             try
@@ -78,10 +82,13 @@ namespace SimConnectWrapper
                     Sim = null;
                 }
 
-                OnError?.Invoke(this, ex);
+                RaiseError(ex);
             }
         }
 
+        /// <summary>
+        /// If not done yet, creates a new SimConnect object and hooks in the necessary events
+        /// </summary>
         private SimConnect GetConnection()
         {
             if (Sim == null)
@@ -94,6 +101,10 @@ namespace SimConnectWrapper
             return Sim;
         }
 
+        /// <summary>
+        /// Handler for the OnRecvOpen event, where the necessary data structure registrations with SimConnect
+        /// can be done
+        /// </summary>
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
             foreach (var property in Subscriptions)
@@ -111,8 +122,13 @@ namespace SimConnectWrapper
             }
 
             _opened = true;
+
+            ClearError();
         }
 
+        /// <summary>
+        /// Event Handler when the simulator offers new data, will update LatestData
+        /// </summary>
         private void SimConnect_OnRecvSimobjectDataBytype(SimConnect sender, SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data)
         {
             LastDataReceivedOn = DateTime.UtcNow;
@@ -126,6 +142,9 @@ namespace SimConnectWrapper
             }
         }
 
+        /// <summary>
+        /// Given the data received by SimConnect, will parse the value in the appropriate type
+        /// </summary>
         private SimConnectPropertyValue GetValue(SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data, SIMCONNECT_DATATYPE dataType)
         {
             // TODO: Move this method to the constructor of SimConnectPropertyValue
@@ -143,14 +162,18 @@ namespace SimConnectWrapper
             }
         }
 
-        public bool HasError => throw new NotImplementedException();
+        public bool HasError { get; private set; }
 
-        public Exception LatestError => throw new NotImplementedException();
+        public Exception LatestError { get; private set; }
 
         public SimConnect Sim { get; private set; }
 
         public event EventHandler<Exception> OnError;
 
+        /// <summary>
+        /// Triggers the retrieval of Information from the Sim, should be executed 
+        /// at the appropriate time by the implementers of this Base class
+        /// </summary>
         public void ReceiveMessage()
         {
             try
@@ -159,7 +182,7 @@ namespace SimConnectWrapper
             }
             catch (Exception ex)
             {
-                OnError?.Invoke(this, ex);
+                RaiseError(ex);
             }
         }
 
@@ -175,6 +198,20 @@ namespace SimConnectWrapper
         public void Subscribe(IEnumerable<SimConnectProperty> properties)
         {
             foreach(var property in properties) { Subscribe(property); }
+        }
+
+        public void RaiseError(Exception exception)
+        {
+            HasError = true;
+            LatestError = exception;
+
+            OnError?.Invoke(this, exception);
+        }
+
+        public void ClearError()
+        {
+            HasError = false;
+            LatestError = null;
         }
     }
 }

@@ -32,14 +32,21 @@ namespace SimConnectWrapper.Forms.Test
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            var altitude = simConnectWrapper.LatestData[SimConnectProperties.PlaneAltitude];
-            if (!altitude.Empty)
+            if (simConnectWrapper.HasError)
             {
-                lblAltitude.Text = $"{altitude.DoubleValue} ft";
-                lblStatusText.Text = $"Latest data received on: {simConnectWrapper.LastDataReceivedOn}";
+                lblStatusText.Text = $"Error: {simConnectWrapper.LatestError.Message}";
             } else
             {
-                lblStatusText.Text = $"No data received, last checked {DateTime.Now}";
+                var altitude = simConnectWrapper.LatestData[SimConnectProperties.PlaneAltitude];
+                if (!altitude.Empty)
+                {
+                    lblAltitude.Text = $"{altitude.DoubleValue} ft";
+                    lblStatusText.Text = $"Latest data received on: {simConnectWrapper.LastDataReceivedOn}";
+                }
+                else
+                {
+                    lblStatusText.Text = $"No data received, last checked {DateTime.Now}";
+                }
             }
         }
     }

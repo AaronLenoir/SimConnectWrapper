@@ -1,13 +1,12 @@
 ﻿using Microsoft.FlightSimulator.SimConnect;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimConnectWrapper.Forms
 {
+    /// <summary>
+    /// Implementation of a SimConnectWrapper with Windows Forms Specifics
+    /// </summary>
     public class SimConnectWrapperWindows : SimConnectWrapperBase
     {
         // ID used to identify the SimConnect message in the Windows Message Loop
@@ -17,6 +16,10 @@ namespace SimConnectWrapper.Forms
 
         private IntPtr Handle;
 
+        /// <summary>
+        /// This object is used by the internal timer in the SimConnectWrapper 
+        /// to ensure the events happen on the main application thread
+        /// </summary>
         private ISynchronizeInvoke SynchronizationObject;
 
         public SimConnectWrapperWindows(string title, IntPtr handle, ISynchronizeInvoke synchronizationObject)

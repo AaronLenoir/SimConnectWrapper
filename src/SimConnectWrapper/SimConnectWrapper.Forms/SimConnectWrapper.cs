@@ -42,8 +42,7 @@ namespace SimConnectWrapper.Forms
                 }
                 catch (Exception ex)
                 {
-                    // TODO: Handle error
-                    //OnError?.Invoke(this, ex);
+                    _simConnectWrapper.RaiseError(ex);
                 }
             }
 
