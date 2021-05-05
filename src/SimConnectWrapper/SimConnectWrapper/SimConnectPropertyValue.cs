@@ -1,5 +1,6 @@
 ﻿using Microsoft.FlightSimulator.SimConnect;
 using SimConnectWrapper.SimConnectDataType;
+using System;
 
 namespace SimConnectWrapper
 {
@@ -17,6 +18,8 @@ namespace SimConnectWrapper
             if (value == null) { return; }
 
             if (value is double) { DoubleValue = (double)value; return; }
+
+            if (value is int) { IntegerValue = (int)value; return; }
 
             if (value is string) { StringValue = (string)value; return; }
         }
@@ -39,6 +42,10 @@ namespace SimConnectWrapper
             {
                 SetValue(((String64)data.dwData[0]).Value);
             }
+            else if (dataType == SIMCONNECT_DATATYPE.INT32)
+            {
+                SetValue(((Int32)data.dwData[0]));
+            }
             else
             {
                 SetValue(data.dwData[0]);
@@ -48,6 +55,8 @@ namespace SimConnectWrapper
         public bool Empty { get; set; }
 
         public double? DoubleValue { get; set; }
+
+        public double? IntegerValue { get; set; }
 
         public string StringValue { get; set; }
 

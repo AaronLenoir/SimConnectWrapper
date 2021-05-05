@@ -7,6 +7,13 @@ namespace SimConnectWrapper
     /// </summary>
     public class SimConnectProperties
     {
+        // Aircraft engine data
+        public static SimConnectProperty NumberOfEngines = new SimConnectProperty(
+            SimConnectPropertyKey.NumberOfEngines, "NUMBER OF ENGINES", "number", SIMCONNECT_DATATYPE.FLOAT64);
+        // TODO: Correctly parse the masked value
+        public static SimConnectProperty EngineControlSelect = new SimConnectProperty(
+            SimConnectPropertyKey.EngineControlSelect, "ENGINE CONTROL SELECT", "mask", SIMCONNECT_DATATYPE.INT32);
+
         public static SimConnectProperty PlaneLongitude = new SimConnectProperty(
             SimConnectPropertyKey.PlaneLongitude, "PLANE LONGITUDE", "degree", SIMCONNECT_DATATYPE.FLOAT64);
         public static SimConnectProperty PlaneLatitude = new SimConnectProperty(

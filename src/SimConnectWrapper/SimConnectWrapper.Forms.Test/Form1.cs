@@ -29,6 +29,8 @@ namespace SimConnectWrapper.Forms.Test
         {
             simConnectWrapper.Connect();
 
+            simConnectWrapper.Subscribe(SimConnectProperties.NumberOfEngines);
+            simConnectWrapper.Subscribe(SimConnectProperties.EngineControlSelect);
             simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
             simConnectWrapper.Subscribe(SimConnectProperties.AtcType);
             simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
