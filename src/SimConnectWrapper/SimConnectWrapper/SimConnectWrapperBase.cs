@@ -138,28 +138,10 @@ namespace SimConnectWrapper
 
             if (!property.IsEmpty)
             {
-                LatestData[property] = GetValue(data, property.SimConnectDataType);
+                LatestData[property] = new SimConnectPropertyValue(data, property.SimConnectDataType);
             }
-        }
 
-        /// <summary>
-        /// Given the data received by SimConnect, will parse the value in the appropriate type
-        /// </summary>
-        private SimConnectPropertyValue GetValue(SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE data, SIMCONNECT_DATATYPE dataType)
-        {
-            // TODO: Move this method to the constructor of SimConnectPropertyValue
-            if (dataType == SIMCONNECT_DATATYPE.STRING8)
-            {
-                return new SimConnectPropertyValue(((String8)data.dwData[0]).Value);
-            }
-            else if (dataType == SIMCONNECT_DATATYPE.STRING64)
-            {
-                return new SimConnectPropertyValue(((String64)data.dwData[0]).Value);
-            }
-            else
-            {
-                return new SimConnectPropertyValue(data.dwData[0]);
-            }
+            ClearError();
         }
 
         public bool HasError { get; private set; }

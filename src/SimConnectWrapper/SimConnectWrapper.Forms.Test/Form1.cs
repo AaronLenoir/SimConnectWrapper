@@ -13,16 +13,29 @@ namespace SimConnectWrapper.Forms.Test
     public partial class Form1 : Form
     {
         private Timer _timer;
+
+        private SimConnectWrapper simConnectWrapper;
+
         public Form1()
         {
             InitializeComponent();
+
+            // Cannot use the visual studio designer due to 64 bit limitations
+            simConnectWrapper = new SimConnectWrapper();
+            Controls.Add(simConnectWrapper);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             simConnectWrapper.Connect();
 
+            simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
+            simConnectWrapper.Subscribe(SimConnectProperties.AtcType);
+            simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
             simConnectWrapper.Subscribe(SimConnectProperties.PlaneAltitude);
+            simConnectWrapper.Subscribe(SimConnectProperties.PlaneHeadingDegreesTrue);
+            simConnectWrapper.Subscribe(SimConnectProperties.PlaneLatitude);
+            simConnectWrapper.Subscribe(SimConnectProperties.PlaneLongitude);
 
             _timer = new Timer();
             _timer.Tick += _timer_Tick;
@@ -37,16 +50,24 @@ namespace SimConnectWrapper.Forms.Test
                 lblStatusText.Text = $"Error: {simConnectWrapper.LatestError.Message}";
             } else
             {
-                var altitude = simConnectWrapper.LatestData[SimConnectProperties.PlaneAltitude];
-                if (!altitude.Empty)
+                var allData = new StringBuilder();
+
+                foreach(var property in simConnectWrapper.Subscriptions)
                 {
-                    lblAltitude.Text = $"{altitude.DoubleValue} ft";
-                    lblStatusText.Text = $"Latest data received on: {simConnectWrapper.LastDataReceivedOn}";
+                    var value = simConnectWrapper.LatestData[property];
+
+                    if (!value.Empty)
+                    {
+                        allData.AppendLine($"{property.Name}:\t\t{value.RawValue}");
+                    } else
+                    {
+                        allData.AppendLine($"{property.Name}:\t\tno data received yet");
+                    }
                 }
-                else
-                {
-                    lblStatusText.Text = $"No data received, last checked {DateTime.Now}";
-                }
+
+                txtRawValues.Text = allData.ToString();
+
+                lblStatusText.Text = $"Last check for data {DateTime.Now}";
             }
         }
     }
