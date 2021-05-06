@@ -1,0 +1,52 @@
+Name;Description;Unit;Type;Settable;Multiplayer
+AUTOPILOT AIRSPEED HOLD;Airspeed hold active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT AIRSPEED HOLD VAR;Selected airspeed;Knots;TYPE_UIF32;N;Shared Cockpit
+AUTOPILOT ALTITUDE LOCK;Altitude hole active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT ALTITUDE LOCK VAR;Selected altitude;Feet;;N;Shared Cockpit
+AUTOPILOT ALTITUDE SLOT INDEX;Index of the managed references;Number;TYPE_UINT32;N;-
+AUTOPILOT APPROACH HOLD;Approach mode active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT ATTITUDE HOLD;Attitude hold active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT AVAILABLE;Available flag;Bool;TYPE_BOOL;N;-
+AUTOPILOT BACKCOURSE HOLD;Back course mode active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT BANK HOLD;Bank Mode Active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT DISENGAGED;Whether or not the autopilot has been disengaged.;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT FLIGHT DIRECTOR ACTIVE;Flight director active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT FLIGHT DIRECTOR BANK;Reference bank angle;Radians;TYPE_FLOAT64;N;-
+AUTOPILOT FLIGHT DIRECTOR BANK EX1;Raw reference bank angle;Radians;TYPE_FLOAT64;N;-
+AUTOPILOT FLIGHT DIRECTOR PITCH;Reference pitch angle;Radians;TYPE_FLOAT64;N;-
+AUTOPILOT FLIGHT DIRECTOR PITCH EX1;Raw reference pitch angle;Radians;TYPE_FLOAT64;N;-
+AUTOPILOT GLIDESLOPE HOLD;GS hold active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT HEADING LOCK;Heading mode active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT HEADING LOCK DIR;Selected heading;Degrees;TYPE_ANGL16;N;Shared Cockpit
+AUTOPILOT HEADING SLOT INDEX;Index of the managed references;Number;TYPE_UINT32;N;-
+AUTOPILOT MACH HOLD;Mach hold active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT MACH HOLD VAR;Selected mach;Number;TYPE_UIF32;N;Shared Cockpit
+AUTOPILOT MANAGED INDEX;Index of the managed references;Number;TYPE_UINT32;N;-
+AUTOPILOT MANAGED SPEED IN MACH;Is the Managed Speed in Mach;Bool;TYPE_BOOL;N;
+AUTOPILOT MANAGED THROTTLE ACTIVE;Managed Autothrottle active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT MASTER;On/off flag;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT MAX BANK;True if autopilot max bank applied;Radians;TYPE_FLOAT64;N;-
+AUTOPILOT NAV1 LOCK;True if autopilot nav1 lock applied;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT NAV SELECTED;Index of Nav radio selected;Number;;N;-
+AUTOPILOT PITCH HOLD;Set to True if the autopilot pitch hold has is engaged.;Bool;TYPE_BOOL;N;-
+AUTOPILOT PITCH HOLD REF;Current reference pitch;Radians;TYPE_FLOAT64;N;-
+AUTOPILOT RPM HOLD;True if autopilot rpm hold applied;Bool;TYPE_BOOL;N;-
+AUTOPILOT RPM HOLD VAR;Selected rpm;Number;TYPE_UINT32;N;-
+AUTOPILOT RPM SLOT INDEX;Index of the managed references;Number;TYPE_UINT32;N;-
+AUTOPILOT SPEED SLOT INDEX;Index of the managed references;Number;TYPE_UINT32;N;-
+AUTOPILOT TAKEOFF POWER ACTIVE;Takeoff / Go Around power mode active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT THROTTLE ARM;Autothrottle armed;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT THROTTLE MAX THRUST;Autothrottle max thrust;Float, Percent.;TYPE_FLOAT64;Y;Shared Cockpit
+AUTOPILOT VERTICAL HOLD;True if autopilot vertical hold applied;Bool;TYPE_BOOL;N;-
+AUTOPILOT VERTICAL HOLD VAR;Selected vertical speed;Feet/minute;;N;Shared Cockpit
+AUTOPILOT VS SLOT INDEX;Index of the managed references;Number;TYPE_UINT32;N;-
+AUTOPILOT WING LEVELER;Wing leveler active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOPILOT YAW DAMPER;Yaw damper active;Bool;TYPE_BOOL;N;Shared Cockpit
+AUTOTHROTTLE ACTIVE;Auto-throttle active;Bool;;N;-
+COM SPACING MODE;Com [index] Radio Frequency step: 0 = 25kHz 1 = 8.33kHz;Enum;;Y;-
+FLY BY WIRE ELAC FAILED;True if the Elevators and Ailerons computer has failed.;Bool;TYPE_BOOL;N;-
+FLY BY WIRE ELAC SWITCH;True if the fly by wire Elevators and Ailerons computer is on.;Bool;TYPE_BOOL;N;-
+FLY BY WIRE FAC FAILED;True if the Flight Augmentation computer has failed.;Bool;TYPE_BOOL;N;-
+FLY BY WIRE FAC SWITCH;True if the fly by wire Flight Augmentation computer is on.;Bool;TYPE_BOOL;N;-
+FLY BY WIRE SEC FAILED;True if the Spoilers and Elevators computer has failed.;Bool;TYPE_BOOL;N;-
+FLY BY WIRE SEC SWITCH;True if the fly by wire Spoilers and Elevators computer is on.;Bool;TYPE_BOOL;N;-
