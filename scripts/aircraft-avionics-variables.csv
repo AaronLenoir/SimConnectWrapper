@@ -1,0 +1,153 @@
+Name;Description;Unit;Type;Settable;Multiplayer
+ADF ACTIVE FREQUENCY ;ADF frequency. Index of 1 or 2. ;Frequency ADF BCD32 ;  ;;Shared Cockpit
+ADF AVAILABLE ;True if ADF is available ;Bool ;  ;;-
+ADF CARD ;ADF compass rose setting ;Degrees ;TYPE_UINT32 ;;Shared Cockpit
+ADF EXT FREQUENCY ;Legacy, use ADF ACTIVE FREQUENCY ;Frequency BCD16 ;TYPE_BCD16 ;;-
+ADF FREQUENCY ;Legacy, use ADF ACTIVE FREQUENCY ;Frequency BCD16 ;TYPE_BCD16 ;;-
+ADF IDENT ;ICAO code ;String ;  ;;-
+ADF LATLONALT ;Returns the latitude, longitude and altitude of the station the radio equipment is currently tuned to, or zeros if the radio is not tuned to any ADF station. Index of 1 or 2 for ADF 1 and ADF 2. ;SIMCONNECT_DATA_LATLONALTstructure ;  ;;-
+ADF NAME ;Descriptive name ;String ;  ;;-
+ADF RADIAL ;Current direction from NDB station ;Degrees ;TYPE_FLOAT64 ;;-
+ADF SIGNAL ;Signal strength ;Number ;TYPE_FLOAT64 ;;-
+ADF SOUND ;ADF audio flag. Index of 0 or 1. ;Bool ;TYPE_FLOAT64 ;;Shared Cockpit
+ADF STANDBY AVAILABLE ;True if ADF Standby is available ;Bool ;  ;;-
+ADF STANDBY FREQUENCY ;ADF standby frequency ;Hz ;  ;;-
+AUDIO PANEL AVAILABLE ;True if Audio panel is available ;Bool ;  ;;-
+AUDIO PANEL VOLUME ;The Volume of the Audio Panel. ;Float, Percent. ;TYPE_FLOAT64 ;;-
+AVIONICS MASTER SWITCH ;Avionics switch state ;Bool ;TYPE_BOOL ;;All aircraft
+COM ACTIVE FREQUENCY ;Com frequency. Index is 1 or 2. ;Frequency BCD16 ;TYPE_BCD16 ;;All aircraft
+COM AVAILABLE ;True if COM1, COM2 or COM3 is available (depending on the index) ;Bool ;  ;;-
+COM RECEIVE ALL ;Toggles all COM radios to receive on ;Bool ;TYPE_FLOAT64 ;;-
+COM RECIEVE ALL ;Flag if all Coms receiving ;Bool ;  ;;Shared Cockpit
+COM STANDBY FREQUENCY ;Com standby frequency. Index is 1 or 2. ;Frequency BCD16 ;TYPE_BCD16 ;;All aircraft
+COM STATUS ;Radio status flag ;;enum: -1 =Invalid 0 = OK 1 = Does not exist2 = No electricity3 = Failed;  ;;-
+COM TEST ;Enter an index of 1 or 2. True if the COM system is working. ;Bool ;TYPE_BOOL ;;-
+COM TRANSMIT ;Audio panel com transmit state. Index of 1 or 2. ;Bool ;TYPE_FLOAT64 ;;Shared Cockpit
+COPILOT TRANSMITTER TYPE ;On which channel the copilot is transmitting. ;;enum: 0 = COM1 1 = COM2 2 = COM3 3 = TEL 4 = NONE;TYPE_ENUM ;;-
+COPILOT TRANSMITTING ;Whether or not the copilot is transmitting. ;Bool ;TYPE_BOOL ;;-
+DME SOUND ;DME audio flag ;Bool ;TYPE_FLOAT64 ;;Shared Cockpit
+GPS APPROACH APPROACH INDEX ;Index of approach for given airport ;Number ;  ;;-
+GPS APPROACH APPROACH TYPE ;Approach type ;;enum: 0 = None 1 = GPS 2 = VOR 3 = NDB 4 = ILS 5 = Localizer 6 = SDF 7 = LDA 8 = VOR/ DME 9 = NDB/ DME 10 = RNAV 11 = Backcourse ;  ;;-
+GPS APPROACH IS FINAL ;Is approach transition final approach segment ;Bool ;  ;;-
+GPS APPROACH IS MISSED ;Is approach segment missed approach segment ;Bool ;  ;;-
+GPS APPROACH IS WP RUNWAY ;Waypoint is the runway ;Bool ;  ;;-
+GPS APPROACH MODE ;Sub mode within approach mode. ;;enum: 0 = None 1 = Transition 2 = Final 3 = Missed;  ;;-
+GPS APPROACH SEGMENT TYPE ;Segment type within approach. ;;enum: 0 = Line 1 = Arc clockwise 2 = Arc counter-clockwise;  ;;-
+GPS APPROACH TIMEZONE DEVIATION ;Deviation of local time from GMT ;Seconds ;  ;;-
+GPS APPROACH TRANSITION INDEX ;Index of approach transition ;Number ;  ;;-
+GPS APPROACH WP COUNT ;Number of waypoints ;Number ;  ;;-
+GPS APPROACH WP INDEX ;Index of current waypoint ;Number ;  ;;-
+GPS APPROACH WP TYPE ;Waypoint type within approach mode. ;;enum: 0 = None 1 = Fix 2 = Procedure turn left 3 = Procedure turn right 4 = Dme arc left 5 = Dme arc right 6 = Holding left 7 = Holding right 8 = Distance 9 = Altitude 10 = Manual sequence 11 = Vector to final;  ;;-
+GPS COURSE TO STEER ;Suggested heading to steer (for autopilot) ;Radians ;  ;;-
+GPS DRIVES NAV1 ;GPS is driving Nav 1 indicator ;Bool ;TYPE_BOOL ;;Shared Cockpit
+GPS ETA ;Estimated time of arrival at destination ;Seconds ;  ;;-
+GPS ETE ;Estimated time en route to destination ;Seconds ;  ;;-
+GPS FLIGHT PLAN WP COUNT ;Number of waypoints ;Number ;  ;;-
+GPS FLIGHT PLAN WP INDEX ;Index of waypoint ;Number ;  ;;-
+GPS GROUND MAGNETIC TRACK ;Current magnetic ground track ;Radians ;TYPE_FLOAT64 ;;-
+GPS GROUND SPEED ;Current ground speed ;Meters per second ;TYPE_FLOAT64 ;;-
+GPS GROUND TRUE HEADING ;Current true heading ;Radians ;TYPE_FLOAT64 ;;-
+GPS GROUND TRUE TRACK ;Current true ground track ;Radians ;  ;;-
+GPS IS ACTIVE FLIGHT PLAN ;Flight plan mode active ;Bool ;  ;;-
+GPS IS ACTIVE WAY POINT ;Waypoint mode active ;Bool ;  ;;-
+GPS IS ACTIVE WP LOCKED ;Is switching to next waypoint locked ;Bool ;  ;;-
+GPS IS APPROACH ACTIVE ;Is approach mode active ;Bool ;  ;;-
+GPS IS APPROACH LOADED ;Is approach loaded ;Bool ;  ;;-
+GPS IS ARRIVED ;Is flight plan destination reached ;Bool ;  ;;-
+GPS IS DIRECTTO FLIGHTPLAN ;Is Direct To Waypoint mode active ;Bool ;  ;;-
+GPS MAGVAR ;Current GPS magnetic variation ;Radians ;TYPE_FLOAT64 ;;-
+GPS POSITION ALT ;Current GPS altitude ;Meters ;TYPE_FLOAT64 ;;-
+GPS POSITION LAT ;Current GPS latitude ;Degrees ;TYPE_FLOAT64 ;;-
+GPS POSITION LON ;Current GPS longitude ;Degrees ;TYPE_FLOAT64 ;;-
+GPS TARGET ALTITUDE ;Altitude of GPS target ;Meters ;  ;;-
+GPS TARGET DISTANCE ;Distance to target ;Meters ;  ;;-
+GPS VERTICAL ANGLE ;Glidepath in degrees ;Degrees ;  ;;-
+GPS VERTICAL ANGLE ERROR ;Vertical error in degrees from GlidePath ;Degrees ;  ;;-
+GPS VERTICAL ERROR ;Vertical deviation in meters from GlidePath ;Meters ;  ;;-
+GPS WP BEARING ;Magnetic bearing to waypoint ;Radians ;TYPE_FLOAT64 ;;-
+GPS WP CROSS TRK ;Cross track distance ;Meters ;TYPE_FLOAT64 ;;-
+GPS WP DESIRED TRACK ;Desired track to waypoint ;Radians ;TYPE_FLOAT64 ;;-
+GPS WP DISTANCE ;Distance to waypoint ;Meters ;TYPE_FLOAT64 ;;-
+GPS WP ETA ;Estimated time of arrival at waypoint ;Seconds ;  ;;-
+GPS WP ETE ;Estimated time en route to waypoint ;Seconds ;  ;;-
+GPS WP NEXT ALT ;Altitude of next waypoint ;Meters ;TYPE_FLOAT64 ;;-
+GPS WP NEXT LAT ;Latitude of next waypoint ;Degrees ;TYPE_FLOAT64 ;;-
+GPS WP NEXT LON ;Longitude of next waypoint ;Degrees ;TYPE_FLOAT64 ;;-
+GPS WP PREV ALT ;Altitude of previous waypoint ;Meters ;TYPE_FLOAT64 ;;-
+GPS WP PREV LAT ;Latitude of previous waypoint ;Degrees ;TYPE_FLOAT64 ;;-
+GPS WP PREV LON ;Longitude of previous waypoint ;Degrees ;TYPE_FLOAT64 ;;-
+GPS WP PREV VALID ;Is previous waypoint valid (i.e. current waypoint is not the first waypoint) ;Bool ;  ;;-
+GPS WP TRACK ANGLE ERROR ;Tracking angle error to waypoint ;Radians ;  ;;-
+GPS WP TRUE BEARING ;True bearing to waypoint ;Radians ;TYPE_FLOAT64 ;;-
+GPS WP TRUE REQ HDG ;Required true heading to waypoint ;Radians ;TYPE_FLOAT64 ;;-
+GPS WP VERTICAL SPEED ;Vertical speed to waypoint ;Meters per second ;  ;;-
+HSI BEARING ;If the GPS DRIVES NAV1 variable is true and the HSI BEARING VALID variable is true, this variable contains the HSI needle bearing.If the GPS DRIVES NAV1 variable is false and the HSI BEARING VALID variable is true, this variable contains theADF1 frequency. ;Degrees ;TYPE_FLOAT64 ;;-
+HSI BEARING VALID ;This will return true if the HSI BEARING variable contains valid data. ;Bool ;TYPE_BOOL ;;-
+HSI CDI NEEDLE ;Needle deflection (+/- 127) ;Number ;  ;;-
+HSI CDI NEEDLE VALID ;Signal valid ;Bool ;TYPE_BOOL ;;-
+HSI DISTANCE ;DME/GPS distance ;Nautical miles ;TYPE_FLOAT64 ;;-
+HSI GSI NEEDLE ;Needle deflection (+/- 119) ;Number ;  ;;-
+HSI GSI NEEDLE VALID ;Signal valid ;Bool ;TYPE_BOOL ;;-
+HSI HAS LOCALIZER ;Station is a localizer ;Bool ;TYPE_BOOL ;;-
+HSI SPEED ;DME/GPS speed ;Knots ;TYPE_FLOAT64 ;;-
+HSI TF FLAGS ;Nav TO/FROM flag. ;; Enum: 0 = Off 1 = TO 2 = FROM;  ;;-
+INNER MARKER ;Inner marker state ;Bool ;  ;;-
+INNER MARKER LATLONALT ;Returns the latitude, longitude and altitude of the inner marker of an approach to a runway, if the aircraft is within the required proximity, otherwise it will return zeros. ;SIMCONNECT_DATA_LATLONALTstructure ;  ;;-
+INTERCOM MODE ;Intercom Mode ;; Enum:0 = ISO 1 = ALL 2 = CREW;TYPE_ENUM ;;-
+INTERCOM SYSTEM ACTIVE ;Whether or not the intercom system is active. ;Bool ;TYPE_BOOL ;;-
+MARKER AVAILABLE ;True if Marker is available ;Bool ;  ;;-
+MARKER BEACON SENSITIVITY HIGH ;Whether or not the Marker Beacon is in High Sensitivity mode. ;Bool ;TYPE_BOOL ;;-
+MARKER BEACON STATE ;Marker beacon state. ;;enum: 0 = None 1 = Outer 2 = Middle 3 = Inner;TYPE_FLOAT64 ;;-
+MARKER BEACON TEST MUTE ;Whether or not the Marker Beacon is in Test/Mute mode. ;Bool ;TYPE_BOOL ;;-
+MARKER SOUND ;Marker audio flag ;Bool ;TYPE_FLOAT64 ;;-
+MIDDLE MARKER ;Middle marker state ;Bool ;  ;;-
+MIDDLE MARKER LATLONALT ;Returns the latitude, longitude and altitude of the middle marker. ;SIMCONNECT_DATA_LATLONALT structure ;  ;;-
+NAV ACTIVE FREQUENCY ;Nav active frequency. Index is 1 or 2. ;MHz ;TYPE_BCD16 ;;Shared Cockpit
+NAV AVAILABLE ;Flag if Nav equipped on aircraft ;Bool ;TYPE_BOOL ;;-
+NAV BACK COURSE FLAGS ;Returns the following bit flags. ; Flags: BIT0:[index] 1=back course available BIT1:[index] 1=localizer tuned in BIT2:[index] 1=on course BIT7:[index] 1=station active ;TYPE_FLAGS8 ;;-
+NAV CDI ;CDI needle deflection (+/- 127) ;Number ;TYPE_SINT8 ;;-
+NAV CLOSE DME ;DME distance ;Nautical miles ;  ;;-
+NAV CLOSE FREQUENCY ;Closest Localizer course frequency ;Hz ;  ;;-
+NAV CLOSE IDENT ;ICAO code ;String ;  ;;-
+NAV CLOSE LOCALIZER ;Closest Localizer course heading ;Degrees ;  ;;-
+NAV CLOSE NAME ;Descriptive name ;String ;  ;;-
+NAV CODES ;Returns bit flags with the following meaning. ;Flags: BIT7:[index] 0= VOR  1= Localizer BIT6:[index] 1= glideslope available BIT5:[index] 1= no localizer backcourse BIT4:[index] 1= DME transmitter at glide slope transmitter BIT3:[index] 1= no nav signal available BIT2:[index] 1= voice available BIT1:[index] 1 = TACAN available BIT0:[index] 1= DME available;TYPE_FLAGS8 ;;-
+NAV DME ;DME distance ;Nautical miles ;  ;;-
+NAV DMESPEED ;DME speed ;Knots ;  ;;-
+NAV DME LATLONALT ;Returns the DME station. ;SIMCONNECT_DATA_LATLONALT structure ;  ;;-
+NAV FREQUENCY ;Localizer course frequency ;Hz ;  ;;-
+NAV GLIDE SLOPE ;The glide slope gradient. ;Number ;  ;;-
+NAV GLIDE SLOPE ERROR ;Difference between current position and glideslope angle. Note that this provides 32 bit floating point precision, rather than the 8 bit integer precision of NAV GSI. ;Degrees ;  ;;-
+NAV GSI ;Glideslope needle deflection (+/- 119). Note that this provides only 8 bit precision, whereas NAV GLIDE SLOPE ERROR provides 32 bit floating point precision. ;Number ;TYPE_SINT8 ;;-
+NAV GS FLAG ;Glideslope flag ;Bool ;TYPE_BOOL8 ;;-
+NAV GS LATLONALT ;Returns the glide slope. ;SIMCONNECT_DATA_LATLONALT structure ;  ;;-
+NAV HAS CLOSE DME ;Flag if found a close station with a DME ;Bool ;  ;;-
+NAV HAS CLOSE LOCALIZER ;Flag if found a close localizer station ;Bool ;  ;;-
+NAV HAS DME ;Flag if tuned station has a DME ;Bool ;  ;;-
+NAV HAS GLIDE SLOPE ;Flag if tuned station has a glideslope ;Bool ;  ;;-
+NAV HAS LOCALIZER ;Flag if tuned station is a localizer ;Bool ;  ;;-
+NAV HAS NAV ;Flag if Nav has signal ;Bool ;  ;;-
+NAV IDENT ;ICAO code ;String ;  ;;-
+NAV LOCALIZER ;Localizer course heading ;Degrees ;  ;;-
+NAV MAGVAR ;Magnetic variation of tuned nav station ;Degrees ;TYPE_UINT16 ;;-
+NAV NAME ;Descriptive name ;String ;  ;;-
+NAV OBS ;OBS setting. Index of 1 or 2. ;Degrees ;TYPE_UINT16 ;;Shared Cockpit
+NAV RADIAL ;Radial that aircraft is on ;Degrees ;TYPE_UINT16 ;;-
+NAV RADIAL ERROR ;Difference between current radial and OBS tuned radial ;Degrees ;  ;;-
+NAV RAW GLIDE SLOPE ;Glide slope angle ;Degrees ;  ;;-
+NAV RELATIVE BEARING TO STATION ;Relative bearing to station ;Degrees ;TYPE_FLOAT64 ;;-
+NAV SIGNAL ;Nav signal strength ;Number ;TYPE_UINT16 ;;-
+NAV SOUND ;Nav audio flag. Index of 1 or 2. ;Bool ;TYPE_FLOAT64 ;;Shared Cockpit
+NAV STANDBY FREQUENCY ;Nav standby frequency. Index is 1 or 2. ;MHz ;TYPE_BCD16 ;;Shared Cockpit
+NAV TOFROM ;Nav TO/FROM flag. ;;enum: 0 = Off 1 = TO 2 = FROM;TYPE_ENUM8 ;;-
+NAV VOR DISTANCE ;Distance of the VOR beacon ;Meters ;  ;;-
+NAV VOR LATLONALT ;Returns the VOR station latitude, longitude and altitude. ;SIMCONNECT_DATA_LATLONALT structure ;  ;;-
+OUTER MARKER ;Outer marker state ;Bool ;  ;;-
+OUTER MARKER LATLONALT ;Returns the latitude, longitude and altitude of the outer marker. ;SIMCONNECT_DATA_LATLONALT structure ;  ;;-
+PILOT TRANSMITTER TYPE ;On which channel the pilot is transmitting. ;;enum: 0 = COM1 1 = COM2 2 = COM3 3 = TEL 4 = NONE;TYPE_ENUM ;;-
+PILOT TRANSMITTING ;Whether or not the pilot is transmitting. ;Bool ;TYPE_BOOL ;;-
+SELECTED DME ;Selected DME ;Number ;TYPE_ENUM ;;Shared Cockpit
+SPEAKER ACTIVE ;Whether or not the speaker is active. ;Bool ;TYPE_BOOL ;;-
+TRANSPONDER AVAILABLE ;True if a transponder is available ;Bool ;  ;;-
+TRANSPONDER CODE ;4-digit code ;BCO16 ;TYPE_BCO16 ;;All aircraft (Index of 1 only).
+TRANSPONDER STATE ;Transponder State ;; Enum: 0 = Off 1 = Standby 2 = Test 3 = On 4 = Alt 5 = Ground;  ;;-

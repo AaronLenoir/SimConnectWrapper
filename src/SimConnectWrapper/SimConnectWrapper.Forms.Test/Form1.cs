@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimConnectWrapper.Forms.Test
@@ -14,86 +8,86 @@ namespace SimConnectWrapper.Forms.Test
     {
         private Timer _timer;
 
-        private SimConnectWrapper simConnectWrapper;
+        private readonly SimConnectWrapper _simConnectWrapper;
 
         public Form1()
         {
             InitializeComponent();
 
             // Cannot use the visual studio designer due to 64 bit limitations
-            simConnectWrapper = new SimConnectWrapper();
-            Controls.Add(simConnectWrapper);
+            _simConnectWrapper = new SimConnectWrapper();
+            Controls.Add(_simConnectWrapper);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            simConnectWrapper.Connect();
+            _simConnectWrapper.Connect();
 
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAirspeedHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAirspeedHoldVar);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAltitudeLock);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAltitudeLockVar);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAltitudeSlotIndex);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotApproachHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAttitudeHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAvailable);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotBackcourseHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotBankHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotDisengaged);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorActive);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorBank);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorBankEx1);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorPitch);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorPitchEx1);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotGlideslopeHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotHeadingLock);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotHeadingLockDir);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotHeadingSlotIndex);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMachHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMachHoldVar);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotManagedIndex);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotManagedSpeedInMach);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotManagedThrottleActive);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMaster);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMaxBank);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotNav1Lock);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotNavSelected);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotPitchHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotPitchHoldRef);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotRpmHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotRpmHoldVar);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotRpmSlotIndex);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotSpeedSlotIndex);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotTakeoffPowerActive);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotThrottleArm);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotThrottleMaxThrust);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotVerticalHold);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotVerticalHoldVar);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotVsSlotIndex);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotWingLeveler);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutopilotYawDamper);
-            simConnectWrapper.Subscribe(SimConnectProperties.AutothrottleActive);
-            simConnectWrapper.Subscribe(SimConnectProperties.ComSpacingMode);
-            simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireElacFailed);
-            simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireElacSwitch);
-            simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireFacFailed);
-            simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireFacSwitch);
-            simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireSecFailed);
-            simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireSecSwitch);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAirspeedHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAirspeedHoldVar);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAltitudeLock);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAltitudeLockVar);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAltitudeSlotIndex);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotApproachHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAttitudeHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotAvailable);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotBackcourseHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotBankHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotDisengaged);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorActive);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorBank);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorBankEx1);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorPitch);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotFlightDirectorPitchEx1);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotGlideslopeHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotHeadingLock);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotHeadingLockDir);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotHeadingSlotIndex);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMachHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMachHoldVar);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotManagedIndex);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotManagedSpeedInMach);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotManagedThrottleActive);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMaster);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotMaxBank);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotNav1Lock);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotNavSelected);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotPitchHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotPitchHoldRef);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotRpmHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotRpmHoldVar);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotRpmSlotIndex);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotSpeedSlotIndex);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotTakeoffPowerActive);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotThrottleArm);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotThrottleMaxThrust);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotVerticalHold);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotVerticalHoldVar);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotVsSlotIndex);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotWingLeveler);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutopilotYawDamper);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AutothrottleActive);
+            _simConnectWrapper.Subscribe(SimConnectProperties.ComSpacingMode);
+            _simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireElacFailed);
+            _simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireElacSwitch);
+            _simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireFacFailed);
+            _simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireFacSwitch);
+            _simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireSecFailed);
+            _simConnectWrapper.Subscribe(SimConnectProperties.FlyByWireSecSwitch);
 
-            simConnectWrapper.Subscribe(SimConnectProperties.NumberOfEngines);
-            simConnectWrapper.Subscribe(SimConnectProperties.EngineControlSelect);
-            simConnectWrapper.Subscribe(SimConnectProperties.EngineType);
-            simConnectWrapper.Subscribe(SimConnectProperties.ThrottleLowerLimit);
-            simConnectWrapper.Subscribe(SimConnectProperties.MasterIgnitionSwitch);
-            simConnectWrapper.Subscribe(SimConnectProperties.GeneralEngineCombustion(1));
-            simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
-            simConnectWrapper.Subscribe(SimConnectProperties.AtcType);
-            simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
-            simConnectWrapper.Subscribe(SimConnectProperties.PlaneAltitude);
-            simConnectWrapper.Subscribe(SimConnectProperties.PlaneHeadingDegreesTrue);
-            simConnectWrapper.Subscribe(SimConnectProperties.PlaneLatitude);
-            simConnectWrapper.Subscribe(SimConnectProperties.PlaneLongitude);
+            _simConnectWrapper.Subscribe(SimConnectProperties.NumberOfEngines);
+            _simConnectWrapper.Subscribe(SimConnectProperties.EngineControlSelect);
+            _simConnectWrapper.Subscribe(SimConnectProperties.EngineType);
+            _simConnectWrapper.Subscribe(SimConnectProperties.ThrottleLowerLimit);
+            _simConnectWrapper.Subscribe(SimConnectProperties.MasterIgnitionSwitch);
+            _simConnectWrapper.Subscribe(SimConnectProperties.GeneralEngineCombustion(1));
+            _simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AtcType);
+            _simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
+            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneAltitude);
+            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneHeadingDegreesTrue);
+            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneLatitude);
+            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneLongitude);
 
             _timer = new Timer();
             _timer.Tick += _timer_Tick;
@@ -103,16 +97,16 @@ namespace SimConnectWrapper.Forms.Test
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            if (simConnectWrapper.HasError)
+            if (_simConnectWrapper.HasError)
             {
-                lblStatusText.Text = $"Error: {simConnectWrapper.LatestError.Message}";
+                lblStatusText.Text = $"Error: {_simConnectWrapper.LatestError.Message}";
             } else
             {
                 var allData = new StringBuilder();
 
-                foreach(var property in simConnectWrapper.Subscriptions)
+                foreach(var property in _simConnectWrapper.Subscriptions)
                 {
-                    var value = simConnectWrapper.LatestData[property];
+                    var value = _simConnectWrapper.LatestData[property];
 
                     if (!value.Empty)
                     {

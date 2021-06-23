@@ -45,6 +45,18 @@ namespace SimConnectWrapper
         SimConnect Sim { get; }
 
         /// <summary>
+        /// Defines the interval by which a connection attempt to SimConnect is attempted
+        /// </summary>
+        /// <remarks>If set to 0, no polling is done for a connection and </remarks>
+        int ConnectionPollingInterval { get; set; }
+
+        /// <summary>
+        /// Defines the interval by which data is requested from SimConnect
+        /// </summary>
+        /// <remarks>If set to 0, no polling is done for data and GetData should be called manually</remarks>
+        int DataPollingInterval { get; set; }
+
+        /// <summary>
         /// Starts listening to SimConnect, as soon as possible
         /// </summary>
         void Connect();
@@ -65,5 +77,17 @@ namespace SimConnectWrapper
         /// </summary>
         /// <param name="properties">The properties to subscribe to</param>
         void Subscribe(IEnumerable<SimConnectProperty> properties);
+
+        /// <summary>
+        /// Tries to initialize a connection with SimConnect
+        /// </summary>
+        /// <remarks>Should only be called manually if ConnectionPollingInterval is 0 (no polling)</remarks>
+        void PollConnection();
+
+        /// <summary>
+        /// Requests data from SimConnect for all Subscriptions
+        /// </summary>
+        /// <remarks>Should only be called manually if DataPollingInterval is 0 (no polling)</remarks>
+        void PollData();
     }
 }

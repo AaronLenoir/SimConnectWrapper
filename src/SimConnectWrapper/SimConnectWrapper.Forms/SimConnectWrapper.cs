@@ -18,11 +18,11 @@ namespace SimConnectWrapper.Forms
         public SimConnectWrapper()
         {
             InitializeComponent();
+            _simConnectWrapper = new SimConnectWrapperWindows(this.Name, this.Handle, this);
         }
 
         public void Connect()
         {
-            _simConnectWrapper = new SimConnectWrapperWindows(this.Name, this.Handle, this);
             _simConnectWrapper.Connect();
         }
 
@@ -61,6 +61,18 @@ namespace SimConnectWrapper.Forms
 
         public SimConnect Sim => ((ISimConnectWrapper)_simConnectWrapper).Sim;
 
+        public int ConnectionPollingInterval
+        {
+            get { return ((ISimConnectWrapper)_simConnectWrapper).ConnectionPollingInterval; }
+            set { ((ISimConnectWrapper)_simConnectWrapper).ConnectionPollingInterval = value; }
+        }
+
+        public int DataPollingInterval
+        {
+            get { return ((ISimConnectWrapper)_simConnectWrapper).DataPollingInterval; }
+            set { ((ISimConnectWrapper)_simConnectWrapper).DataPollingInterval = value; }
+        }
+
         public event EventHandler<Exception> OnError
         {
             add
@@ -87,6 +99,15 @@ namespace SimConnectWrapper.Forms
         public void Subscribe(IEnumerable<SimConnectProperty> properties)
         {
             ((ISimConnectWrapper)_simConnectWrapper).Subscribe(properties);
+        }
+
+        public void PollConnection()
+        {
+            ((ISimConnectWrapper)_simConnectWrapper).PollConnection();
+        }
+        public void PollData()
+        {
+            ((ISimConnectWrapper)_simConnectWrapper).PollData();
         }
     }
 }
