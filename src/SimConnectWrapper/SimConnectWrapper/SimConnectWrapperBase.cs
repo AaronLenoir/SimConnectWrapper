@@ -12,21 +12,37 @@ namespace SimConnectWrapper
     {
         private bool _opened = false;
 
-        private List<SimConnectProperty> _subscriptions;
-        
         private Timer _connectionPollingTimer;
 
         private Timer _dataPollingTimer;
 
-        public SimConnectWrapperBase()
-        {
-            _subscriptions = new List<SimConnectProperty>();
-            LastDataReceivedOn = DateTime.UtcNow.AddYears(-100);
-            LatestData = new Dictionary<SimConnectProperty, SimConnectPropertyValue>();
+        private List<SimConnectProperty> _subscriptions;
 
-            ConnectionPollingInterval = 1000;
-            DataPollingInterval = 1000;
-        }
+        public DateTime LastDataReceivedOn { get; private set; }
+
+        public Dictionary<SimConnectProperty, SimConnectPropertyValue> LatestData { get; }
+
+        public IEnumerable<SimConnectProperty> Subscriptions => _subscriptions;
+
+        public SimConnect Sim { get; private set; }
+
+        /// <summary>
+        /// Defines the interval by which a connection attempt to SimConnect is attempted
+        /// </summary>
+        /// <remarks>If set to 0, no polling is done for a connection and PollConnection must be called manually</remarks>
+        public int ConnectionPollingInterval { get; set; }
+
+        /// <summary>
+        /// Defines the interval by which data is requested from SimConnect
+        /// </summary>
+        /// <remarks>If set to 0, no polling is done for data and PollData must be called manually</remarks>
+        public int DataPollingInterval { get; set; }
+
+        public bool HasError { get; private set; }
+
+        public Exception LatestError { get; private set; }
+
+        public event EventHandler<Exception> OnError;
 
         /// <summary>
         /// When implemented in a derived class, creates the instance of SimConnect
@@ -40,6 +56,72 @@ namespace SimConnectWrapper
         /// </summary>
         /// <remarks>This controls the thread it executes the method on</remarks>
         protected abstract ISynchronizeInvoke GetSynchronizationObject();
+
+        public SimConnectWrapperBase()
+        {
+            _subscriptions = new List<SimConnectProperty>();
+            LastDataReceivedOn = DateTime.UtcNow.AddYears(-100);
+            LatestData = new Dictionary<SimConnectProperty, SimConnectPropertyValue>();
+
+            ConnectionPollingInterval = 1000;
+            DataPollingInterval = 1000;
+        }
+
+        public void Connect()
+        {
+            if (ConnectionPollingInterval > 0)
+            {
+                _connectionPollingTimer = StartConnectionPolling();
+            }
+
+            if (DataPollingInterval > 0)
+            {
+                _dataPollingTimer = StartDataPolling();
+            }
+        }
+
+        public void Subscribe(SimConnectProperty property)
+        {
+            if (!_subscriptions.Contains(property))
+            {
+                _subscriptions.Add(property);
+                LatestData.Add(property, SimConnectPropertyValue.EmptyValue);
+            }
+        }
+
+        public void Subscribe(IEnumerable<SimConnectProperty> properties)
+        {
+            foreach (var property in properties) { Subscribe(property); }
+        }
+
+        /// <summary>
+        /// Triggers the retrieval of Information from the Sim, should be executed 
+        /// at the appropriate time by the implementers of this Base class
+        /// </summary>
+        public void ReceiveMessage()
+        {
+            try
+            {
+                Sim.ReceiveMessage();
+            }
+            catch (Exception ex)
+            {
+                RaiseError(ex);
+            }
+        }
+
+        public void PollConnection()
+        {
+            PollConnection(null, null);
+        }
+
+        /// <summary>
+        /// Requests the data from SimConnect for all Subscriptions
+        /// </summary>
+        public void PollData()
+        {
+            PollData(null, null);
+        }
 
         private Timer StartConnectionPolling()
         {
@@ -175,88 +257,9 @@ namespace SimConnectWrapper
             ClearError();
         }
 
-        public SimConnect Sim { get; private set; }
-
-        public DateTime LastDataReceivedOn { get; private set; }
-
-        public Dictionary<SimConnectProperty, SimConnectPropertyValue> LatestData { get; }
-
-        public IEnumerable<SimConnectProperty> Subscriptions => _subscriptions;
-
         /// <summary>
-        /// Defines the interval by which a connection attempt to SimConnect is attempted
+        /// Sets the latest error state and raises the OnError event
         /// </summary>
-        /// <remarks>If set to 0, no polling is done for a connection and PollConnection must be called manually</remarks>
-        public int ConnectionPollingInterval { get; set; }
-
-        /// <summary>
-        /// Defines the interval by which data is requested from SimConnect
-        /// </summary>
-        /// <remarks>If set to 0, no polling is done for data and PollData must be called manually</remarks>
-        public int DataPollingInterval { get; set; }
-
-        public bool HasError { get; private set; }
-
-        public Exception LatestError { get; private set; }
-
-        public event EventHandler<Exception> OnError;
-
-        /// <summary>
-        /// Triggers the retrieval of Information from the Sim, should be executed 
-        /// at the appropriate time by the implementers of this Base class
-        /// </summary>
-        public void ReceiveMessage()
-        {
-            try
-            {
-                Sim.ReceiveMessage();
-            }
-            catch (Exception ex)
-            {
-                RaiseError(ex);
-            }
-        }
-
-        public void Subscribe(SimConnectProperty property)
-        {
-            if (!_subscriptions.Contains(property))
-            {
-                _subscriptions.Add(property);
-                LatestData.Add(property, SimConnectPropertyValue.EmptyValue);
-            }
-        }
-
-        public void Subscribe(IEnumerable<SimConnectProperty> properties)
-        {
-            foreach(var property in properties) { Subscribe(property); }
-        }
-
-        public void Connect()
-        {
-            if (ConnectionPollingInterval > 0)
-            {
-                _connectionPollingTimer = StartConnectionPolling();
-            }
-
-            if (DataPollingInterval > 0)
-            {
-                _dataPollingTimer = StartDataPolling();
-            }
-        }
-
-        public void PollConnection()
-        {
-            PollConnection(null, null);
-        }
-
-        /// <summary>
-        /// Requests the data from SimConnect for all Subscriptions
-        /// </summary>
-        public void PollData()
-        {
-            PollData(null, null);
-        }
-
         public void RaiseError(Exception exception)
         {
             HasError = true;
@@ -265,6 +268,9 @@ namespace SimConnectWrapper
             OnError?.Invoke(this, exception);
         }
 
+        /// <summary>
+        /// Resets the latest error state and raises the OnError event
+        /// </summary>
         public void ClearError()
         {
             HasError = false;

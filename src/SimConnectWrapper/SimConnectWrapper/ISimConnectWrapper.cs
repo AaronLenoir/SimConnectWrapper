@@ -7,22 +7,6 @@ namespace SimConnectWrapper
     public interface ISimConnectWrapper
     {
         /// <summary>
-        /// Will be true if the connection to SimConnect was not succesful
-        /// </summary>
-        bool HasError { get; }
-
-        /// <summary>
-        /// Will contain the latest observed error if <see cref="HasError"/> is true
-        /// </summary>
-        /// <remarks>If no error occured this will be null</remarks>
-        Exception LatestError { get; }
-
-        /// <summary>
-        /// If an error occurs, this event will be raised
-        /// </summary>
-        event EventHandler<Exception> OnError;
-
-        /// <summary>
         /// The last time any kind of data was received from SimConnect
         /// </summary>
         /// <remarks>The data itself can be found in <see cref="LatestData"/></remarks>
@@ -47,24 +31,35 @@ namespace SimConnectWrapper
         /// <summary>
         /// Defines the interval by which a connection attempt to SimConnect is attempted
         /// </summary>
-        /// <remarks>If set to 0, no polling is done for a connection and </remarks>
+        /// <remarks>If set to 0, no polling is done for a connection and PollConnection should be called manually</remarks>
         int ConnectionPollingInterval { get; set; }
 
         /// <summary>
         /// Defines the interval by which data is requested from SimConnect
         /// </summary>
-        /// <remarks>If set to 0, no polling is done for data and GetData should be called manually</remarks>
+        /// <remarks>If set to 0, no polling is done for data and PollData should be called manually</remarks>
         int DataPollingInterval { get; set; }
+
+        /// <summary>
+        /// Will be true if the connection to SimConnect was not succesful
+        /// </summary>
+        bool HasError { get; }
+
+        /// <summary>
+        /// Will contain the latest observed error if <see cref="HasError"/> is true
+        /// </summary>
+        /// <remarks>If no error occured this will be null</remarks>
+        Exception LatestError { get; }
+
+        /// <summary>
+        /// If an error occurs, this event will be raised
+        /// </summary>
+        event EventHandler<Exception> OnError;
 
         /// <summary>
         /// Starts listening to SimConnect, as soon as possible
         /// </summary>
         void Connect();
-
-        /// <summary>
-        /// Must be called to retrieve messages from SimConnect
-        /// </summary>
-        void ReceiveMessage();
 
         /// <summary>
         /// Subscribe to a SimConnect property
@@ -77,6 +72,11 @@ namespace SimConnectWrapper
         /// </summary>
         /// <param name="properties">The properties to subscribe to</param>
         void Subscribe(IEnumerable<SimConnectProperty> properties);
+
+        /// <summary>
+        /// Must be called to retrieve messages from SimConnect
+        /// </summary>
+        void ReceiveMessage();
 
         /// <summary>
         /// Tries to initialize a connection with SimConnect
