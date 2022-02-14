@@ -81,13 +81,14 @@ namespace SimConnectWrapper.Forms.Test
             _simConnectWrapper.Subscribe(SimConnectProperties.ThrottleLowerLimit);
             _simConnectWrapper.Subscribe(SimConnectProperties.MasterIgnitionSwitch);
             _simConnectWrapper.Subscribe(SimConnectProperties.GeneralEngineCombustion(1));
-            _simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
             _simConnectWrapper.Subscribe(SimConnectProperties.AtcType);
-            _simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
-            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneAltitude);
-            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneHeadingDegreesTrue);
+
             _simConnectWrapper.Subscribe(SimConnectProperties.PlaneLatitude);
             _simConnectWrapper.Subscribe(SimConnectProperties.PlaneLongitude);
+            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneAltitude);
+            _simConnectWrapper.Subscribe(SimConnectProperties.PlaneHeadingDegreesTrue);
+            _simConnectWrapper.Subscribe(SimConnectProperties.GpsGroundSpeed);
+            _simConnectWrapper.Subscribe(SimConnectProperties.AtcId);
 
             _timer = new Timer();
             _timer.Tick += _timer_Tick;

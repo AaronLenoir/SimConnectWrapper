@@ -1,6 +1,6 @@
 There's a pre-build event that copies some files from the MSFS SDK to this folder.
 
-The SDK is expected in "C:\MSFS SDK", if the SDK is installed elsewhere, change the pre-build scripts.
+The SDK is expected in "C:\MSFS SDK" as well as the samples, if the SDK and samples are installed elsewhere, change the pre-build scripts.
 
 If you don't have the SDK on your development machine, copy the files manually or put them there in the same structure as how they would be in the SDK.
 

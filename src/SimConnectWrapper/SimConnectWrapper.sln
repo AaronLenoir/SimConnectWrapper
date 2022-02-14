@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimConnectWrapper", "SimConnectWrapper\SimConnectWrapper.csproj", "{E7788FFF-D56E-4481-B7FB-374CAF175329}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimConnectWrapper.Forms", "SimConnectWrapper.Forms\SimConnectWrapper.Forms.csproj", "{7AE526EE-E99D-4CB7-97A7-75093A8F6504}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimConnectWrapper.Forms.Test", "SimConnectWrapper.Forms.Test\SimConnectWrapper.Forms.Test.csproj", "{80D603C2-8383-403A-9FBC-4050EE628F2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimConnectWrapper.Samples.msfs2skydemon", "SimConnectWrapper.Samples.msfs2skydemon\SimConnectWrapper.Samples.msfs2skydemon.csproj", "{7D3C74B1-0E91-4493-8608-83EA7905EA39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{80D603C2-8383-403A-9FBC-4050EE628F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80D603C2-8383-403A-9FBC-4050EE628F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80D603C2-8383-403A-9FBC-4050EE628F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3C74B1-0E91-4493-8608-83EA7905EA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3C74B1-0E91-4493-8608-83EA7905EA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3C74B1-0E91-4493-8608-83EA7905EA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3C74B1-0E91-4493-8608-83EA7905EA39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

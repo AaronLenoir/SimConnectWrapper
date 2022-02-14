@@ -16,4 +16,8 @@
     </Reference>
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy &quot;C:\MSFS SDK\SimConnect SDK\lib\SimConnect.dll&quot; &quot;..\..\references&quot;&#xD;&#xA;copy &quot;C:\MSFS SDK\SimConnect SDK\lib\managed\Microsoft.FlightSimulator.SimConnect.dll&quot; &quot;..\..\references&quot;&#xD;&#xA;copy &quot;C:\MSFS SDK\Samples\SimvarWatcher\SimConnect.cfg&quot; &quot;..\..\references&quot;" />
+  </Target>
+
 </Project>
