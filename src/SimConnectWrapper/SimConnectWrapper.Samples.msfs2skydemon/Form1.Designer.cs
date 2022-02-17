@@ -78,6 +78,7 @@
             this.chkBroadcast.TabIndex = 4;
             this.chkBroadcast.Text = "Broadcast";
             this.chkBroadcast.UseVisualStyleBackColor = true;
+            this.chkBroadcast.CheckedChanged += new System.EventHandler(this.chkBroadcast_CheckedChanged);
             // 
             // Form1
             // 

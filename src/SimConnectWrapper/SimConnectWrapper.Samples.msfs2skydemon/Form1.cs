@@ -62,25 +62,16 @@ namespace SimConnectWrapper.Samples.msfs2skydemon
             var headingTrue = _simConnectWrapper.LatestData[SimConnectProperties.PlaneHeadingDegreesTrue].DoubleValue;
             var groundSpeed = _simConnectWrapper.LatestData[SimConnectProperties.GpsGroundSpeed].DoubleValue;
 
-            if (longitude.HasValue &&
-                latitude.HasValue &&
-                altitude.HasValue &&
-                headingTrue.HasValue &&
-                groundSpeed.HasValue)
-            {
-                var longitudeText = longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                var latitudeText = latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                var altitudeText = altitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                var headingTrueText = headingTrue.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                var groundSpeedText = groundSpeed.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var message = new XgpsMessage(longitude, latitude, altitude, headingTrue, groundSpeed); 
 
-                var xgpsMessage = $"XGPSMSFS,{longitudeText:F6},{latitudeText:F6},{altitudeText:F1},{headingTrueText:F2},{groundSpeedText:F6}";
+            if (message.Valid)
+            {
                 try
                 {
                     var host = txtHost.Text;
                     if (chkBroadcast.Checked) { host = "255.255.255.255"; }
 
-                    var udpMessage = new UdpMessage(host, 49002, xgpsMessage);
+                    var udpMessage = new UdpMessage(host, 49002, message.Data);
                     udpMessage.Send();
 
                     lblStatus.Text = $"Data sent at {DateTime.UtcNow}";
@@ -91,6 +82,11 @@ namespace SimConnectWrapper.Samples.msfs2skydemon
                     lblStatus.ForeColor = Color.Red;
                 }
             }
+        }
+
+        private void chkBroadcast_CheckedChanged(object sender, EventArgs e)
+        {
+            txtHost.Enabled = !chkBroadcast.Checked;
         }
     }
 }
