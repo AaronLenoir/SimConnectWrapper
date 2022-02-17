@@ -68,7 +68,13 @@ namespace SimConnectWrapper.Samples.msfs2skydemon
                 headingTrue.HasValue &&
                 groundSpeed.HasValue)
             {
-                var xgpsMessage = $"XGPSMSFS,{longitude:F6},{latitude:F6},{altitude:F1},{headingTrue:F2},{groundSpeed:F6}";
+                var longitudeText = longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var latitudeText = latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var altitudeText = altitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var headingTrueText = headingTrue.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                var groundSpeedText = groundSpeed.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+                var xgpsMessage = $"XGPSMSFS,{longitudeText:F6},{latitudeText:F6},{altitudeText:F1},{headingTrueText:F2},{groundSpeedText:F6}";
                 try
                 {
                     var host = txtHost.Text;
